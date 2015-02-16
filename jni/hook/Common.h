@@ -28,9 +28,7 @@
 #include <stdint.h>
 #include <stdio.h>
 #include <assert.h>
-//#include "cutils/log.h"
 
-#include "utils.h"
 #define ALOGV LOGI
 #define ALOGD LOGD
 #define ALOGE LOGE

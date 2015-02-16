@@ -1,7 +1,7 @@
 LOCAL_PATH:= $(call my-dir)
 
 include $(CLEAR_VARS)
-LOCAL_SRC_FILES := hook/libhook.cpp hook/Proxy.cpp hook/loader.cpp
+LOCAL_SRC_FILES := hook/libhook.cpp hook/Proxy.cpp 
 LOCAL_MODULE := libhook
 LOCAL_MODULE_TAGS := optional
 LOCAL_SHARED_LIBRARIES := \

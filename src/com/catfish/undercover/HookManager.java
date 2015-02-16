@@ -7,8 +7,6 @@ import java.util.Map;
 
 import android.util.Log;
 
-import com.catfish.undercover.HookedMethod.HookedCallback;
-
 /**
  * Welcome to use Hook tool coded by catfish, hope you can enjoy the java hook
  * journey. You can hook any non-native method with a HookedCallback here.
@@ -18,7 +16,7 @@ import com.catfish.undercover.HookedMethod.HookedCallback;
  */
 
 public class HookManager {
-    private final static String TAG = Hook.TAG;
+    private final static String TAG = "catfish";
     private final static Map<String, HookedMethod> sMethodCache = new HashMap<String, HookedMethod>();
 
     /**
@@ -42,6 +40,7 @@ public class HookManager {
         String key = generateKey(hookMethod);
         HookedMethod fake = sMethodCache.get(key);
         if (fake != null) {
+            Log.i(TAG, "replace callback of " + key);
             fake.mCallback = callback;
             return;
         }
@@ -80,12 +79,13 @@ public class HookManager {
 
         HookedMethod hookkedmethod = sMethodCache.get(generateKey(method));
         if (hookkedmethod != null) {
+            //got the hooked method
             hookkedmethod.mMethod = method;
             if (hookkedmethod.mCallback != null) {
                 try {
                     return hookkedmethod.mCallback.invoke(hookkedmethod, thisObject, args);
                 } catch (Exception e) {
-                    Log.e(TAG, e.getMessage(), e);
+                    Log.e(TAG, e.getLocalizedMessage(), e);
                 }
             }
         }
@@ -96,6 +96,10 @@ public class HookManager {
 
     private native synchronized static void hookMethodNative(Method method);
 
-    native synchronized static Object invokeOriginalMethod(Method method, Object obj, Object[] args, Object[] param,
+    native static Object invokeOriginalMethod(Method method, Object obj, Object[] args, Object[] param,
             Object returnType);
+
+    static {
+        System.loadLibrary("hook");
+    }
 }

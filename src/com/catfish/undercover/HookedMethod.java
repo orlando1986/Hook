@@ -21,11 +21,8 @@ public class HookedMethod {
     }
 
     public Object invoke(Object receiver, Object[] args) {
-        return HookManager.invokeOriginalMethod(mMethod, receiver, args, mMethod.getParameterTypes(), mMethod.getReturnType());
-    }
-
-    public static interface HookedCallback {
-        public Object invoke(HookedMethod method, Object receiver, Object[] args);
+        return HookManager.invokeOriginalMethod(mMethod, receiver, args, mMethod.getParameterTypes(),
+                mMethod.getReturnType());
     }
 
     public TypeVariable<Method>[] getTypeParameters() {

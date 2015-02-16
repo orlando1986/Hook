@@ -14,7 +14,6 @@ extern "C" {
 
 static void Hook_hookMethodNative(JNIEnv* env, jclass clazz,
 		jobject reflectedMethodIndirect) {
-
 	hookMethod(env, clazz, reflectedMethodIndirect);
 }
 
@@ -40,7 +39,7 @@ JNIEXPORT jint JNICALL JNI_OnLoad(JavaVM* vm, void* reserved) {
 	}
 	assert(env != NULL);
 
-	jclass proxyClass = env->FindClass("com.catfish.undercover.HookManager");
+	jclass proxyClass = env->FindClass("com/catfish/undercover/HookManager");
 
 	register_android_jni(env, proxyClass);
 	initMembers(env, proxyClass);

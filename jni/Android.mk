@@ -7,11 +7,9 @@ LOCAL_MODULE_TAGS := optional
 LOCAL_SHARED_LIBRARIES := \
 	libcutils \
 	libutils \
-	libdl \
 	libdvm \
-	libandroid_runtime
 LOCAL_CFLAGS := -DANDROID_NDK
-LOCAL_LDLIBS := -L$(LOCAL_PATH)/hook -landroid_runtime -lnativehelper
+
 LOCAL_LDLIBS += -L$(LOCAL_PATH)/hook -ldvm
 LOCAL_LDLIBS += -L$(SYSROOT)/usr/lib -llog
 #LOCAL_C_INCLUDES := 
